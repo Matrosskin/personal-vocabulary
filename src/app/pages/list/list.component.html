@@ -1,1 +1,45 @@
-<p>list works!</p>
+<mat-toolbar color="primary" class="pv-toolbar">
+  <a mat-icon-button [routerLink]="['/', RouterPathes.Home]">
+    <mat-icon>info</mat-icon>
+  </a>
+  <span class="pv-title">Personal Vocabulary</span>
+  <button mat-icon-button (click)="toggleFitering()">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="pv-page-content">
+  <mat-action-list class="pv-record-list">
+    <button mat-list-item *ngFor="let record of records$ | async" class="pv-record-item">
+      <div class="pv-record-item-container">
+        <div class="pv-record-item-text-block">
+          <span class="pv-record-item-title">{{ record.key?.propertyValue }}</span>
+          <span class="pv-record-item-text">{{ record.translation?.propertyValue }}</span>
+        </div>
+        <button mat-icon-button [matMenuTriggerFor]="recordMenu" (click)="selectedRecordId = record.id">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+    </button>
+
+    <div class="pv-space-at-end-of-list"></div>
+  </mat-action-list>
+
+  <mat-menu #recordMenu="matMenu" xPosition="before">
+    <a mat-menu-item [routerLink]="['/edit', selectedRecordId]">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </a>
+    <!-- <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      Remove
+    </button> -->
+  </mat-menu>
+
+  <pv-bottom-right-placeholder>
+    <!-- TODO: Need to add arrow or so in case the list is empty. Just to show the first step to start working with app. -->
+    <a mat-fab color="primary" [routerLink]="['/', RouterPathes.CreateVocabularyRecord]">
+      <mat-icon>add</mat-icon>
+    </a>
+  </pv-bottom-right-placeholder>
+</div>

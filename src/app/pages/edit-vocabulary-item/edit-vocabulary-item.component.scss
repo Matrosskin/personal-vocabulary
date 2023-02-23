@@ -1,0 +1,23 @@
+
+.form-container {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.add-btn-line {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.pv-property-form-drag-icon {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.pv-property-form-component {
+  flex: 1 1 0;
+}

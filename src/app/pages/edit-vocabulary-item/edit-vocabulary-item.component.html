@@ -1,0 +1,69 @@
+<mat-toolbar color="primary" class="pv-toolbar">
+  <button mat-icon-button (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span class="pv-title">Personal Vocabulary</span>
+  <button mat-icon-button [disabled]="!recordForm.valid || !isAnyPropertyAdded() || saveSubscription" (click)="saveRecord()">
+    <mat-icon>save</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="pv-page-content">
+  <div class="form-container" [formGroup]="recordForm">
+    <pv-key-property-form
+      *ngIf="recordForm.get(RecordPropertyType.Key)"
+      class="pv-property-form-component"
+      [formControlName]="RecordPropertyType.Key"
+      (onDeleteProperty)="deleteProperty(RecordPropertyType.Key)"
+      >
+    </pv-key-property-form>
+
+    <pv-translation-property-form
+      *ngIf="recordForm.get(RecordPropertyType.Translation)"
+      class="pv-property-form-component"
+      [formControlName]="RecordPropertyType.Translation"
+      (onDeleteProperty)="deleteProperty(RecordPropertyType.Translation)"
+      >
+    </pv-translation-property-form>
+
+    <pv-close-prononsiation-property-form
+      *ngIf="recordForm.get(RecordPropertyType.ClosePrononsiation)"
+      class="pv-property-form-component"
+      [formControlName]="RecordPropertyType.ClosePrononsiation"
+      (onDeleteProperty)="deleteProperty(RecordPropertyType.ClosePrononsiation)"
+      >
+    </pv-close-prononsiation-property-form>
+
+    <pv-description-property-form
+      *ngIf="recordForm.get(RecordPropertyType.Description)"
+      class="pv-property-form-component"
+      [formControlName]="RecordPropertyType.Description"
+      (onDeleteProperty)="deleteProperty(RecordPropertyType.Description)"
+      >
+    </pv-description-property-form>
+  </div>
+
+  <div class="add-btn-line">
+    <button mat-mini-fab color="primary" [matMenuTriggerFor]="propertiesTypesToAdd">
+      <mat-icon>add</mat-icon>
+    </button>
+    <mat-menu #propertiesTypesToAdd="matMenu" xPosition="before">
+      <button mat-menu-item (click)="addProperty(RecordPropertyType.Key)"
+        *ngIf="!recordForm.controls[RecordPropertyType.Key]"
+        >
+        Key word/phrase</button>
+      <button mat-menu-item (click)="addProperty(RecordPropertyType.Translation)"
+        *ngIf="!recordForm.controls[RecordPropertyType.Translation]"
+        >
+        Translation</button>
+      <button mat-menu-item (click)="addProperty(RecordPropertyType.ClosePrononsiation)"
+        *ngIf="!recordForm.controls[RecordPropertyType.ClosePrononsiation]"
+        >
+        Close prononsiation</button>
+      <button mat-menu-item (click)="addProperty(RecordPropertyType.Description)"
+        *ngIf="!recordForm.controls[RecordPropertyType.Description]"
+        >
+        Description</button>
+    </mat-menu>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<mat-form-field subscriptSizing="dynamic" class="record-property-input-container">
+  <mat-label>Close prononsiation</mat-label>
+  <input matInput [formControl]="propertyForm.controls.propertyValue" (blur)="onTouchedFn()">
+</mat-form-field>
+
+<button mat-icon-button (click)="deleteProperty()">
+  <mat-icon>delete</mat-icon>
+</button>

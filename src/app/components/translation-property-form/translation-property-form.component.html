@@ -1,0 +1,15 @@
+<mat-form-field subscriptSizing="dynamic" class="record-property-input-container">
+  <mat-label>Translation</mat-label>
+  <input matInput [formControl]="propertyForm.controls.propertyValue" (blur)="onTouchedFn()">
+</mat-form-field>
+
+<mat-button-toggle-group aria-label="Language selector" [value]="propertyForm.controls.valueLanguage.value"
+  (change)="propertyForm.controls.valueLanguage.setValue($event.value)"
+  >
+  <mat-button-toggle value="UA" (blur)="onTouchedFn()">UA</mat-button-toggle>
+  <mat-button-toggle value="EN" (blur)="onTouchedFn()">EN</mat-button-toggle>
+</mat-button-toggle-group>
+
+<button mat-icon-button (click)="deleteProperty()">
+  <mat-icon>delete</mat-icon>
+</button>

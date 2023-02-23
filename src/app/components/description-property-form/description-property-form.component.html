@@ -1,0 +1,8 @@
+<mat-form-field subscriptSizing="dynamic" class="record-property-input-container">
+  <mat-label>Description</mat-label>
+  <textarea matInput [formControl]="propertyForm.controls.propertyValue" (blur)="onTouchedFn()"></textarea>
+</mat-form-field>
+
+<button mat-icon-button (click)="deleteProperty()">
+  <mat-icon>delete</mat-icon>
+</button>
